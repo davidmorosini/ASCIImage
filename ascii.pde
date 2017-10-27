@@ -18,11 +18,11 @@ void setup(){
    
   ASCII = new char[256];
   
-  String letters = ".";
+  String conjunto_caracteres = ".";
   
    for (int i = 0; i < 256; i++) {
-    int index = int(map(i, 0, 256, 0, letters.length()));
-    ASCII[i] = letters.charAt(index);
+    int index = int(map(i, 0, 256, 0, conjunto_caracteres.length()));
+    ASCII[i] = conjunto_caracteres.charAt(index);
   }
   
   //transformacao(100, 100, 500, 500);
