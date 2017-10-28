@@ -2,6 +2,7 @@ PImage img;
 
 //resoluçao espacial (espacamento dos caracteres) que sera aplicado o mapeamento dos caracteres
 int ESPACAMENTO = 1;
+int MAX_ESPACAMENTO = 20;
 //dimensao do quadrado que ira envolver o mapeamento parcial 
 int l = 300;
 
@@ -10,17 +11,16 @@ char[] ASCII;
 int op = 1;
 boolean flag = true, simulation = false;
 
-int MAX_ESPACAMENTO = 20;
-
 void setup(){
-  img = loadImage("bike2.jpg");
-  size(736, 626); 
+  img = loadImage("bike1.jpg");
+  size(612, 612); 
     
    //tabela ASCII
   ASCII = new char[256];
   
   //Caracteres escolhidos para compor o mapeamento da imagem
-  String conjunto_caracteres = ".";
+  //resultado legal, usando os seguintes caracteres: +-=/ 
+  String conjunto_caracteres = "+-=/";
   
   //inicializando o vetor com os caracteres escolhidos
    for (int i = 0; i < 256; i++) {
@@ -30,7 +30,6 @@ void setup(){
 }
 
 void draw(){
-  
   
   if(simulation){
     delay(200);
