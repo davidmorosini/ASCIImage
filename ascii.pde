@@ -11,8 +11,10 @@ char[] ASCII;
 int op = 1;
 boolean flag = true, simulation = false;
 
+String nome_img = "bike1.jpg";
+
 void setup(){
-  img = loadImage("bike1.jpg");
+  img = loadImage(nome_img);
   size(612, 612); 
     
    //tabela ASCII
@@ -100,7 +102,10 @@ void keyPressed(){
       ESPACAMENTO--;
       flag = true;
     }        
-  }   
+  }
+  else if(key == 'p' || key == 'P'){
+    saveFrame("snapshots//" + nome_img);
+  }
 }
 
 void mousePressed(){
