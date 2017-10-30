@@ -11,18 +11,18 @@ char[] ASCII;
 int op = 1;
 boolean flag = true, simulation = false;
 
-String nome_img = "bike1.jpg";
+String nome_img = "chopper.jpg";
 
 void setup(){
   img = loadImage(nome_img);
-  size(612, 612); 
+  size(640, 480); 
     
    //tabela ASCII
   ASCII = new char[256];
   
   //Caracteres escolhidos para compor o mapeamento da imagem
   //resultado legal, usando os seguintes caracteres: +-=/ 
-  String conjunto_caracteres = "+-=/";
+  String conjunto_caracteres = "+";
   
   //inicializando o vetor com os caracteres escolhidos
    for (int i = 0; i < 256; i++) {
@@ -32,11 +32,11 @@ void setup(){
 }
 
 void draw(){
-  
+    
   if(simulation){
     delay(200);
-    ESPACAMENTO++;
-    if(ESPACAMENTO > MAX_ESPACAMENTO){
+    ESPACAMENTO--;
+    if(ESPACAMENTO < 2){
       ESPACAMENTO = 1;
       simulation = false;
       flag = true;
@@ -47,27 +47,28 @@ void draw(){
     
   if(op == 1 && flag){
     background(255);
-    transformacao(0, 0, img.width, img.height, 0);
+    transformacao(0, 0, img.width, img.height);
     flag = false;
   }
   else if(op == 2){
      flag = true;
      image(img, 0, 0);
+     
      rectMode(CENTER);
      fill(255);
-     rect(mouseX, mouseY, l, l);
+     rect(mouseX, mouseY - 5, l, l);
+     
      int xi = constrain(mouseX - l/2, 0, img.width);
      int yi = constrain(mouseY - l/2, 0, img.height);
      int xf = constrain(mouseX + l/2, 0, img.width);
      int yf = constrain(mouseY + l/2, 0, img.height);
-      
-     transformacao(xi, yi, xf, yf, 0);
+     
+     transformacao(xi, yi, xf, yf);
   }
       
 }
 
-void transformacao(int xi, int yi, int xf, int yf, int mask){
-  img.filter(mask);
+void transformacao(int xi, int yi, int xf, int yf){
   img.loadPixels();
  
   for (int y = yi; y < yf; y += ESPACAMENTO) {
@@ -83,7 +84,7 @@ void transformacao(int xi, int yi, int xf, int yf, int mask){
 //as CallBacks funcionam somente com a implementaçao do metodo draw
 //CallBack responsavel pelo teclado
 void keyPressed(){
-  if (key == '1') {
+ if (key == '1') {
     op = 1;
   }
   else if (key == '2') {
@@ -111,5 +112,5 @@ void keyPressed(){
 void mousePressed(){
     //dando inicio a animaçao de mapeamento por caracteres
     simulation = true;
-    ESPACAMENTO = 1;
+    ESPACAMENTO = 20;
 }
